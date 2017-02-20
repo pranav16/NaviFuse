@@ -1,0 +1,50 @@
+package com.navisens.OSM;
+
+import org.json.JSONObject;
+import org.json.XML;
+
+import com.google.gson.Gson;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
+
+public class OSMBBResponseBuilder {
+
+	private final String osmBBGetEndpoint = "https://master.apis.dev.openstreetmap.org/api/0.6/map?bbox=";
+	
+	public OSMBBResponse getResponse(double left,double bottom,double right,double top)
+	{
+		try {
+		
+			final String path = osmBBGetEndpoint +left +"%2C"+ bottom +"%2C" + right +"%2C"+top;
+			HttpResponse<String> response = Unirest.get(path)
+					  .header("cache-control", "no-cache")
+					  .asString();
+		
+		if(response.getStatus() == 200)
+		{
+			 JSONObject xmlToJson = XML.toJSONObject(response.getBody().toString());
+			 Gson gson = new Gson();
+			 System.out.println(gson.fromJson(xmlToJson.toString(), OSMBBResponse.class));
+			 return gson.fromJson(xmlToJson.toString(), OSMBBResponse.class);
+		}
+		else
+		{
+
+				String error = response.getHeaders().get("Error").toString();
+				OSMBBResponse osm = new OSMBBResponse();
+				osm.setError(error);
+				return osm;
+		}
+		}
+		catch (UnirestException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return null;
+	}
+	
+	
+	
+}
