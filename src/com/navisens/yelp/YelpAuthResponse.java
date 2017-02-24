@@ -1,4 +1,5 @@
 package com.navisens.yelp;
+
 /*
  * A singleton response of Yelp auth token. 
  */
@@ -8,16 +9,17 @@ public class YelpAuthResponse {
 	private String token_type;
 	private long expires_in;
 	private static YelpAuthResponse instance;
-	private YelpAuthResponse(){};
-	
-	public static synchronized YelpAuthResponse getInstance()
-	{
-		if(instance == null)
+
+	private YelpAuthResponse() {
+	};
+
+	public static synchronized YelpAuthResponse getInstance() {
+		if (instance == null)
 			return instance = new YelpAuthResponse();
-		
+
 		return instance;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "YelpAuthResponse [access_token=" + access_token + ", token_type=" + token_type + ", expires_in="

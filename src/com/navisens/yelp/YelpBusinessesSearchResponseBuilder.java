@@ -22,6 +22,7 @@ public class YelpBusinessesSearchResponseBuilder {
 			 YelpBusinessesSearchResponse res = json.fromJson(response.getBody(), YelpBusinessesSearchResponse.class);
 			 return res;
 		 } 
+		
 		}
 		catch (UnirestException e) {
 			e.printStackTrace();

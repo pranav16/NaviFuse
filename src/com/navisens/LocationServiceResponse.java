@@ -1,22 +1,23 @@
 package com.navisens;
 
-import com.navisens.OSM.OSMBBResponse;
+
+import com.navisens.OSM.OSMCustomResponse;
 import com.navisens.yelp.YelpBusinessesSearchResponse;
 
 public class LocationServiceResponse {
 
 	private YelpBusinessesSearchResponse Yelp;
-	private OSMBBResponse OSM;
+	private OSMCustomResponse OSM;
 	public YelpBusinessesSearchResponse getYelp() {
 		return Yelp;
 	}
 	public void setYelp(YelpBusinessesSearchResponse yelp) {
 		Yelp = yelp;
 	}
-	public OSMBBResponse getOSM() {
+	public OSMCustomResponse getOSM() {
 		return OSM;
 	}
-	public void setOSM(OSMBBResponse oSM) {
+	public void setOSM(OSMCustomResponse oSM) {
 		OSM = oSM;
 	}
 	@Override
