@@ -6,6 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
 
+
+
 /*
   A bootstrap Servlet that initializes Yelp Auth Token and then creates a scheduler to keep it updated. 
   Yelp has a expire period of 180 days which comes in seconds.
@@ -17,6 +19,7 @@ public class YelpAuthService extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	public void init(ServletConfig config) throws ServletException {
+		
 		YelpAuthSchedulerTask st = new YelpAuthSchedulerTask(); 
 		if(st.getAuthToken())
 		{
